@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  hdb:
+    container_name: hdb
+    build: ./ops/hdb
+    ports:
+      - 6543:5432
+    networks:
+      - rsl_network
+    volumes:
+      - hdb:/var/lib/postgresql/data
+
+networks:
+  rsl_network:
+
+volumes:
+  hdb:
