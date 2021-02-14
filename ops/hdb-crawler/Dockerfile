@@ -1,6 +1,6 @@
-FROM python:3.7.6 as hdb_crawler
+FROM python:3.7.6 as hdb-crawler
 
-WORKDIR /hdb_cralwer
+WORKDIR /hdb_crawler
 RUN pip3 install --no-cache-dir Scrapy
 
 # This is to keep container alive
