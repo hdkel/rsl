@@ -18,12 +18,11 @@ class SourceAyumiLoveStats:
             rnd = random.randrange(len(links) - 1)
             links_to_crawl = [links[rnd]]
 
-        results = []
         for link in links_to_crawl:
-            results.append(scrapy.Request(
+            yield scrapy.Request(
                 response.urljoin(link),
                 callback=self.parse_detail,
-            ))
+            )
 
     # parse_detail defines the rules to parse data from a detail page
     # @see https://ayumilove.net/raid-shadow-legends-krisk-the-ageless-skill-mastery-equip-guide/ for DOM structure
@@ -67,9 +66,10 @@ class SourceAyumiLoveStats:
             stats_acc=peel_text(sectionInfoStats.xpath('./text()[8]').get()),
         )
 
-        # Make response
-        yield {
-            'name': name,
-            'attributes': attr,
-            'stats': stats,
-        }
+        filename = f'results/stats-{name.lower().replace(" ", "-")}.json'
+        with open(filename, 'wb') as f:
+            f.write(json.dumps({
+                'name': name,
+                'attributes': attr,
+                'stats': stats,
+            }).encode())

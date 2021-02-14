@@ -58,12 +58,11 @@ class SourceAyumiLoveRanking:
             links_to_crawl = [links[rnd]]
 
         # Follow links to crawl
-        results = []
         for link in links_to_crawl:
-            results.append(scrapy.Request(
+            yield scrapy.Request(
                 response.urljoin(link),
                 callback=self.parse_detail,
-            ))
+            )
 
     # parse_detail defines the rules to parse data from a detail page
     # @see https://ayumilove.net/raid-shadow-legends-krisk-the-ageless-skill-mastery-equip-guide/ for DOM structure
@@ -109,8 +108,9 @@ class SourceAyumiLoveRanking:
                 area_rank[self.area_map[rankLocation]] = count_star(self.char_star, rankStars)
         ayumi['arena_rank'] = area_rank
 
-        # Makes the response
-        yield {
-            'name': name,
-            'ayumi_rank': ayumi,
-        }
+        filename = f'results/ayumi-ranking-{name.lower().replace(" ", "-")}.json'
+        with open(filename, 'wb') as f:
+            f.write(json.dumps({
+                'name': name,
+                'ayumi_rank': ayumi,
+        }).encode())
