@@ -7,5 +7,5 @@ CREATE TABLE heroes (
     "affinity" TEXT,
     "tomes" int2,
     "bast_stats" JSONB,
-    'ayumi_ranking' JSONB,
+    "ayumi_ranking" JSONB
 );

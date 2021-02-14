@@ -10,9 +10,33 @@ services:
       - rsl_network
     volumes:
       - hdb:/var/lib/postgresql/data
+  hdb_crawler:
+    container_name: hdb_crawler
+    build: ops/hdb_crawler
+    depends_on:
+      - hdb
+    networks:
+      - rsl_network
+    volumes:
+      # local:container
+      - ./hdb_crawler:/hdb_cralwer
+      - hdb_data:/hdb_crawler/results
+  hdb_api:
+    container_name: hdb_api
+    build: ops/hdb_api
+    depends_on:
+      - hdb
+    networks:
+      - rsl_network
+#    volumes:
+      # local:container
+#      - ./hdb_api:/hdb_cralwer
+#      - hdb_data:/hdb_crawler/results
+
 
 networks:
   rsl_network:
 
 volumes:
   hdb:
+  hdb_data:

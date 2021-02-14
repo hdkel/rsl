@@ -5,7 +5,7 @@ from source.source_ayumilove_stats import SourceAyumiLoveStats
 from source.source_ayumilove_ranking import SourceAyumiLoveRanking
 
 
-# Usage: scrapy runspider scraper.py -a scope=random|all
+# Usage: scrapy runspider rsl.py -a scope=random|all
 class ShadowLegendsDataSpider(scrapy.Spider, ABC):
 
     urls = ['']

@@ -38,6 +38,7 @@ class SourceAyumiLoveStats:
         name = peel_text(headerSection.xpath('./h1/text()').get(), '|', 0)
 
         # Stats
+        # TODO: might be empty for some champions
         contentSection = response.css('.entry-content')
         # The middle column of table, where base stats and other stuff are presented.
         propertySection = contentSection.xpath('./table//tr/td[2]')
@@ -66,7 +67,7 @@ class SourceAyumiLoveStats:
             stats_acc=peel_text(sectionInfoStats.xpath('./text()[8]').get()),
         )
 
-        filename = f'results/stats-{name.lower().replace(" ", "-")}.json'
+        filename = f'results/base-stats-{name.lower().replace(" ", "-")}.json'
         with open(filename, 'wb') as f:
             f.write(json.dumps({
                 'name': name,

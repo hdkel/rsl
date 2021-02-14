@@ -80,7 +80,8 @@ class SourceAyumiLoveRanking:
         headerSection = response.css('.entry-header')
         name = peel_text(headerSection.xpath('./h1/text()').get(), '|', 0)
 
-        # Stats
+        # Rankings
+        # TODO: might be empty for some champions
         contentSection = response.css('.entry-content')
 
         # The middle column of table, where ayumilove book/usability are presented.
