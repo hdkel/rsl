@@ -1,3 +1,5 @@
-services/crawler/results/**
+services/hdb-api/crawler/results/**
 .idea
 **__py*
+node_modules
+package-lock.json

@@ -1,6 +1,6 @@
 from abc import ABC
 import scrapy
-from url_source import URLSource
+from source.url_source import URLSource
 from source.source_ayumilove_stats import SourceAyumiLoveStats
 from source.source_ayumilove_ranking import SourceAyumiLoveRanking
 

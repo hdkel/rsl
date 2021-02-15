@@ -1,0 +1,13 @@
+{
+  "name": "hdb-api",
+  "version": "0.0.2",
+  "description": "Raid: Shadow Legends champion database.",
+  "author": "James Hu <dongkuihu@gmail.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1"
+  }
+}
